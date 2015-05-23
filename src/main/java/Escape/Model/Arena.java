@@ -1,8 +1,5 @@
 package Escape.Model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Arena {
 	private Player player;
 	private Enemy enemy1;

@@ -9,10 +9,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 import Escape.Controller.Controller;
 import Escape.Model.Arena;
+import Escape.Service.Service;
 import Escape.View.View;
 
 import java.awt.Color;
@@ -75,7 +75,7 @@ private void initMenu() {
         
         createMenuBar();
 
-        setTitle("Simple menu");
+        setTitle("Escape");
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
@@ -93,7 +93,18 @@ private void initMenu() {
         newGameMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                
+                Service.newGame(arena, control, view);
+            }
+        });
+        
+        JMenuItem saveGameMenuItem = new JMenuItem("Save Game");
+        newGameMenuItem.setMnemonic(KeyEvent.VK_E);
+        newGameMenuItem.setToolTipText("Save the actual score and start a new game!");
+        newGameMenuItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+            	Service.saveGame(arena);
+                Service.newGame(arena, control, view);
             }
         });
         

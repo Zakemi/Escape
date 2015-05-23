@@ -5,7 +5,6 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -16,8 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.JTextPane;
 
 import Escape.Controller.Controller;
 import Escape.Model.Arena;
@@ -55,13 +52,9 @@ public class View extends JPanel implements KeyListener{
 		this.add(score);
 		
 		try {
-			//File playerImg = new File("resources/puppy-icon.png");
-			//File enemyImg = new File("resources/wolf-icon.png");
-			//File trapImg = new File("resources/trap-icon.png");
 			InputStream playerImg = ClassLoader.getSystemResourceAsStream("puppy-icon.png");
 			InputStream enemyImg = ClassLoader.getSystemResourceAsStream("wolf-icon.png");
 			InputStream trapImg = ClassLoader.getSystemResourceAsStream("trap-icon.png");
-			//Image playerImage = ImageIO.read(playerImg);
 			Image playerImage = ImageIO.read(playerImg);
 			Image enemyImage = ImageIO.read(enemyImg);
 			Image trapImage = ImageIO.read(trapImg);

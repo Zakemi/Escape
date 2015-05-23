@@ -2,7 +2,6 @@ package Escape.Controller;
 
 import Escape.Model.Arena;
 import Escape.Model.ArenaObject;
-import Escape.Model.Enemy;
 import Escape.Service.Service;
 import Escape.View.View;
 
@@ -117,4 +116,15 @@ public class Controller{
 	public int getEnemyScore() {
 		return enemyScore;
 	}
+
+	public void setPlayerScore(int playerScore) {
+		this.playerScore = playerScore;
+	}
+
+	public void setEnemyScore(int enemyScore) {
+		this.enemyScore = enemyScore;
+	}
+	
+	
+	
 }
