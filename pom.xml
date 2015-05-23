@@ -1,0 +1,23 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>hu.unideb.inf</groupId>
+	<artifactId>Escape</artifactId>
+	<version>1.0</version>
+	<name>Escape</name>
+	<url>https://github.com/Zakemi/Escape</url>
+	<licenses>
+		<license>
+			<name>Apache Licence, Version 2.0</name>
+			<url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+		</license>
+	</licenses>
+	<inceptionYear>2015</inceptionYear>
+	<organization>
+		<name>Faculty of Informatics, University of Debrecen</name>
+	</organization>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+	</properties>
+</project>
