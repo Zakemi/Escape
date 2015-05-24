@@ -6,13 +6,14 @@
 	<version>1.0</version>
 	<name>Escape</name>
 	<url>https://github.com/Zakemi/Escape</url>
+	<description>A small game project</description>
 	<developers>
 		<developer>
-			<id>zakemi</id>
+			<id>Zakemi</id>
 			<name>Diána Deregi</name>
 			<email>deregidia@gmail.com</email>
 			<organization>University of Debrecen, Faculty of Informatics</organization>
-			<organizationUrl>http://www.inf.unideb.hu/</organizationUrl>
+			<organizationUrl>http://www.w1.inf.unideb.hu/</organizationUrl>
 			<roles>
 				<role>developer</role>
 			</roles>
