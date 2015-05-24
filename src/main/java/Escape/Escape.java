@@ -35,7 +35,9 @@ public class Escape extends JFrame {
 	private View view;
 	private Controller control;
 	private Rank rank;
-	private static String username;
+	private String username = "Guest";
+	private String DAOpassword = "pwd";
+	public int szam = 0;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -44,10 +46,14 @@ public class Escape extends JFrame {
 					Escape frame = new Escape();
 					frame.setVisible(true);
 					do{
-		            	username = JOptionPane.showInputDialog(frame, "Enter username");
-					} while(username.equals("") || username == null);
+						frame.DAOpassword = JOptionPane.showInputDialog(frame, "Enter password for database!");
+					} while(frame.DAOpassword.equals("pwd"));
+					do{
+		            	frame.username = JOptionPane.showInputDialog(frame, "Enter your in-game name!");
+					} while(frame.username.equals("") || frame.username == null);
+					frame.rank.setDAOpassword(frame.DAOpassword);
+					frame.rank.refreshRank();
 				} catch (Exception e) {
-					username = "Guest";
 					e.printStackTrace();
 				}
 			}
@@ -115,7 +121,7 @@ private void initMenu() {
             @Override
             public void actionPerformed(ActionEvent event) {
         		System.out.println(control.getPlayerScore()+control.getEnemyScore());
-            	Service.saveGame(control, username);
+            	Service.saveGame(control, username, DAOpassword);
                 Service.newGame(arena, control, view);
             }
         });

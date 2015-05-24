@@ -20,11 +20,13 @@ import JDBC.GameState;
 public class Rank extends JPanel {
 	
 	JTextPane ranks;
+	private String DAOpassword;
 	
 	public Rank(){
+		this.DAOpassword = DAOpassword;
 		ranks = new JTextPane();
 		ranks.setBounds(100, 100, 500, 300);
-		refreshRank();
+		//refreshRank();
 		this.add(ranks);
 		
 		JButton refresh = new JButton("Refresh");
@@ -39,37 +41,23 @@ public class Rank extends JPanel {
 		this.add(refresh);
 	}
 
-	private void refreshRank(){
-		List<GameState> gamestate = Service.getTop5();
+	public void setDAOpassword(String dAOpassword) {
+		DAOpassword = dAOpassword;
+	}
+
+	public void refreshRank(){
+		List<GameState> gamestate = Service.getTop5(DAOpassword);
 		
-		SimpleAttributeSet first = new SimpleAttributeSet();
-		StyleConstants.setFontFamily(first, Font.MONOSPACED);
-		StyleConstants.setFontSize(first, 20);
-		StyleConstants.setBold(first, true);
-		StyleConstants.setForeground(first, Color.RED);
-		
-		SimpleAttributeSet second = new SimpleAttributeSet();
-		StyleConstants.setFontFamily(second, Font.MONOSPACED);
-		StyleConstants.setFontSize(second, 20);
-		StyleConstants.setBold(second, true);
-		StyleConstants.setForeground(second, Color.ORANGE);
-		
-		SimpleAttributeSet third = new SimpleAttributeSet();
-		StyleConstants.setFontFamily(third, Font.MONOSPACED);
-		StyleConstants.setFontSize(third, 20);
-		StyleConstants.setBold(third, true);
-		StyleConstants.setForeground(third, Color.YELLOW);
-		
-		SimpleAttributeSet other = new SimpleAttributeSet();
-		StyleConstants.setFontFamily(other, Font.MONOSPACED);
-		StyleConstants.setFontSize(other, 20);
-		StyleConstants.setBold(other, true);
-		StyleConstants.setForeground(other, Color.BLACK);
+		SimpleAttributeSet rowStyle = new SimpleAttributeSet();
+		StyleConstants.setFontFamily(rowStyle, Font.MONOSPACED);
+		StyleConstants.setFontSize(rowStyle, 20);
+		StyleConstants.setBold(rowStyle, true);
+		StyleConstants.setForeground(rowStyle, Color.BLACK);
 
 		ranks.setText("");
 		try {
 			ranks.getDocument().insertString(ranks.getDocument().getLength(), 
-					String.format("\n%6s%20s%7s%6s%6s  \n", "Rank", "Name", "Player", "Enemy", "Full"), other);
+					String.format("\n%6s%20s%7s%6s%6s  \n", "Rank", "Name", "Player", "Enemy", "Full"), rowStyle);
 		} catch (BadLocationException e1) {
 			e1.printStackTrace();
 		}
@@ -84,18 +72,18 @@ public class Rank extends JPanel {
 					gamestate.get(i).getPlayerScore(), gamestate.get(i).getEnemyScore(), gamestate.get(i).getFullScore());
 			try {
 				if ( i== 0)
-					ranks.getDocument().insertString(ranks.getDocument().getLength(), window, first);
+					StyleConstants.setForeground(rowStyle, Color.RED);
 				else if (i==1)
-					ranks.getDocument().insertString(ranks.getDocument().getLength(), window, second);
+					StyleConstants.setForeground(rowStyle, Color.ORANGE);
 				else if (i==2)
-					ranks.getDocument().insertString(ranks.getDocument().getLength(), window, third);
+					StyleConstants.setForeground(rowStyle, Color.YELLOW);
 				else
-					ranks.getDocument().insertString(ranks.getDocument().getLength(), window, other);
+					StyleConstants.setForeground(rowStyle, Color.BLACK);
+				ranks.getDocument().insertString(ranks.getDocument().getLength(), window, rowStyle);
 			} catch (BadLocationException e) {
 				e.printStackTrace();
 			}
 		}
-		//ranks.setText(window);
 		
 	}
 	

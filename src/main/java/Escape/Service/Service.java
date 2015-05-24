@@ -34,17 +34,17 @@ public class Service {
 		view.updateView();
 	}
 	
-	public static void saveGame(Controller control, String username){
+	public static void saveGame(Controller control, String username, String DAOpassword){
 		GameState newGameState = new GameState(username, control.getPlayerScore(), control.getEnemyScore(),
 				control.getPlayerScore()-control.getEnemyScore());
 		System.out.println(control.getPlayerScore()+control.getEnemyScore());
 		DAO dao = new DAO();
-		dao.addGameState(newGameState);
+		dao.addGameState(newGameState, DAOpassword);
 	}
 	
-	public static List<GameState> getTop5(){
+	public static List<GameState> getTop5(String DAOpassword){
 		DAO dao = new DAO();
-		return dao.getTop5();
+		return dao.getTop5(DAOpassword);
 	}
 	
 }

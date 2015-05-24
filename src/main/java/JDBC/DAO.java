@@ -10,8 +10,8 @@ import java.util.List;
 
 public class DAO {
 	
-	public void createGameStateTable(){
-		try (Connection connection = ConnectionFactory.getConnection("H_ECSSN7", "kassai")){
+	public void createGameStateTable(String password){
+		try (Connection connection = ConnectionFactory.getConnection("H_ECSSN7", password)){
 			Statement statement = connection.createStatement();
 			String create_table = "CREATE TABLE gamestate"
 						+"("
@@ -26,9 +26,9 @@ public class DAO {
 		}
 	}
 	
-	public List<GameState> getTop5(){
+	public List<GameState> getTop5(String password){
 		List<GameState> result = new ArrayList<GameState>();
-		try (Connection connection = ConnectionFactory.getConnection("H_ECSSN7", "kassai")){
+		try (Connection connection = ConnectionFactory.getConnection("H_ECSSN7", password)){
 			Statement statement = connection.createStatement();
 			ResultSet resultSet = statement.executeQuery("SELECT * FROM (SELECT * FROM gamestate ORDER BY full_score DESC) WHERE ROWNUM<6");
 			while(resultSet.next()){
@@ -48,8 +48,8 @@ public class DAO {
 		return result;
 	}
 
-	public void addGameState(GameState gameState){
-		try(Connection connection = ConnectionFactory.getConnection("H_ECSSN7", "kassai")){
+	public void addGameState(GameState gameState, String password){
+		try(Connection connection = ConnectionFactory.getConnection("H_ECSSN7", password)){
 			System.out.println(gameState.getPlayerScore()+gameState.getEnemyScore());
 			PreparedStatement prepstate = connection.prepareStatement("INSERT INTO gamestate(username, player_score, enemy_score, full_score) VALUES (?,?,?,?)");
 			prepstate.setString(1, gameState.getUsername());
