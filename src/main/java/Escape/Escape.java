@@ -17,6 +17,7 @@ import javax.swing.JTabbedPane;
 import Escape.Controller.Controller;
 import Escape.Model.Arena;
 import Escape.Service.Service;
+import Escape.View.Rank;
 import Escape.View.View;
 
 import java.awt.Color;
@@ -33,6 +34,7 @@ public class Escape extends JFrame {
 	private Arena arena;
 	private View view;
 	private Controller control;
+	private Rank rank;
 	private static String username;
 
 	public static void main(String[] args) {
@@ -43,8 +45,9 @@ public class Escape extends JFrame {
 					frame.setVisible(true);
 					do{
 		            	username = JOptionPane.showInputDialog(frame, "Enter username");
-					} while(username.equals(""));
+					} while(username.equals("") || username == null);
 				} catch (Exception e) {
+					username = "Guest";
 					e.printStackTrace();
 				}
 			}
@@ -66,6 +69,7 @@ public class Escape extends JFrame {
         view = new View(arena);
         control = new Controller(arena, view);
         view.setControl(control);
+        rank = new Rank();
 		//contentPane.setBorder(null);
 		setContentPane(contentPane);
 		//contentPane.setLayout(null);
@@ -74,6 +78,7 @@ public class Escape extends JFrame {
 		initMenu();
 		JTabbedPane tabbedPane = new JTabbedPane();
 		tabbedPane.addTab("Game", view);
+		tabbedPane.addTab("Rank", rank);
 		contentPane.add(tabbedPane);
 	}
 	
@@ -109,7 +114,8 @@ private void initMenu() {
         saveGameMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-            	Service.saveGame(arena, username);
+        		System.out.println(control.getPlayerScore()+control.getEnemyScore());
+            	Service.saveGame(control, username);
                 Service.newGame(arena, control, view);
             }
         });

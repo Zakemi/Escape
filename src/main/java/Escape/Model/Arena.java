@@ -5,8 +5,6 @@ public class Arena {
 	private Enemy enemy1;
 	private Enemy enemy2;
 	private Traps traps;
-	private int playerScore = 0;
-	private int enemyScore = 0;
 	private int size;
 	private int winSize;
 	private int step;
@@ -28,22 +26,6 @@ public class Arena {
 		if (enemy2.isActive() == true)
 			return true;
 		return false;
-	}
-
-	public int getPlayerScore() {
-		return playerScore;
-	}
-
-	public void setPlayerScore(int playerScore) {
-		this.playerScore = playerScore;
-	}
-
-	public int getEnemyScore() {
-		return enemyScore;
-	}
-
-	public void setEnemyScore(int enemyScore) {
-		this.enemyScore = enemyScore;
 	}
 
 	public Player getPlayer() {

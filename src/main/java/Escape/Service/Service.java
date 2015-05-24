@@ -5,7 +5,6 @@ import java.util.List;
 import Escape.Controller.Controller;
 import Escape.Model.Arena;
 import Escape.View.View;
-import Escape.View.Window;
 import JDBC.DAO;
 import JDBC.GameState;
 
@@ -35,9 +34,10 @@ public class Service {
 		view.updateView();
 	}
 	
-	public static void saveGame(Arena arena, String username){
-		GameState newGameState = new GameState(username, arena.getPlayerScore(), arena.getEnemyScore(),
-				arena.getPlayerScore()-arena.getEnemyScore());
+	public static void saveGame(Controller control, String username){
+		GameState newGameState = new GameState(username, control.getPlayerScore(), control.getEnemyScore(),
+				control.getPlayerScore()-control.getEnemyScore());
+		System.out.println(control.getPlayerScore()+control.getEnemyScore());
 		DAO dao = new DAO();
 		dao.addGameState(newGameState);
 	}
