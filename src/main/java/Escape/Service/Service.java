@@ -1,8 +1,12 @@
 package Escape.Service;
 
+import java.util.List;
+
 import Escape.Controller.Controller;
 import Escape.Model.Arena;
 import Escape.View.View;
+import Escape.View.Window;
+import JDBC.DAO;
 import JDBC.GameState;
 
 public class Service {
@@ -31,9 +35,16 @@ public class Service {
 		view.updateView();
 	}
 	
-	public static void saveGame(Arena arena){
-		GameState gs = new GameState("asd", arena.getPlayerScore(), arena.getEnemyScore(),
+	public static void saveGame(Arena arena, String username){
+		GameState newGameState = new GameState(username, arena.getPlayerScore(), arena.getEnemyScore(),
 				arena.getPlayerScore()-arena.getEnemyScore());
+		DAO dao = new DAO();
+		dao.addGameState(newGameState);
+	}
+	
+	public static List<GameState> getTop5(){
+		DAO dao = new DAO();
+		return dao.getTop5();
 	}
 	
 }

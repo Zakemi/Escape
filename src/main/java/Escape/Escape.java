@@ -1,14 +1,18 @@
 package Escape;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Insets;
 
+import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 import Escape.Controller.Controller;
 import Escape.Model.Arena;
@@ -18,6 +22,8 @@ import Escape.View.View;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 
 public class Escape extends JFrame {
@@ -27,16 +33,17 @@ public class Escape extends JFrame {
 	private Arena arena;
 	private View view;
 	private Controller control;
+	private static String username;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Escape frame = new Escape();
 					frame.setVisible(true);
+					do{
+		            	username = JOptionPane.showInputDialog(frame, "Enter username");
+					} while(username.equals(""));
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -44,9 +51,6 @@ public class Escape extends JFrame {
 		});
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public Escape() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(300, 0, 0, 0);
@@ -54,7 +58,7 @@ public class Escape extends JFrame {
 		Insets insets = getInsets();
 		//this.
 		setSize(new Dimension(insets.left + insets.right + 600,
-		             insets.top + insets.bottom + 600));
+		             insets.top + insets.bottom + 630));
 		//setSize(new Dimension(600, 600));
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
@@ -65,10 +69,12 @@ public class Escape extends JFrame {
 		//contentPane.setBorder(null);
 		setContentPane(contentPane);
 		//contentPane.setLayout(null);
+		contentPane.setLayout(new BorderLayout());
 		
-		this.add(view);
-		this.setContentPane(view);
 		initMenu();
+		JTabbedPane tabbedPane = new JTabbedPane();
+		tabbedPane.addTab("Game", view);
+		contentPane.add(tabbedPane);
 	}
 	
 private void initMenu() {
@@ -98,12 +104,12 @@ private void initMenu() {
         });
         
         JMenuItem saveGameMenuItem = new JMenuItem("Save Game");
-        newGameMenuItem.setMnemonic(KeyEvent.VK_E);
-        newGameMenuItem.setToolTipText("Save the actual score and start a new game!");
-        newGameMenuItem.addActionListener(new ActionListener() {
+        saveGameMenuItem.setMnemonic(KeyEvent.VK_E);
+        saveGameMenuItem.setToolTipText("Save the actual score and start a new game!");
+        saveGameMenuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-            	Service.saveGame(arena);
+            	Service.saveGame(arena, username);
                 Service.newGame(arena, control, view);
             }
         });
@@ -119,6 +125,7 @@ private void initMenu() {
         });
 
         file.add(newGameMenuItem);
+        file.add(saveGameMenuItem);
         file.add(exitMenuItem);
         menubar.add(file);
 
