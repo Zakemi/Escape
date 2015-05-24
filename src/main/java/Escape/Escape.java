@@ -88,7 +88,7 @@ public class Escape extends JFrame {
 		contentPane.add(tabbedPane);
 	}
 	
-private void initMenu() {
+	private void initMenu() {
         
         createMenuBar();
 
