@@ -16,7 +16,7 @@ public class Traps {
 	
 	/**
 	 * Constructor for initialize the list size and add invalid traps.
-	 * After initialize the constructor calls the <code>trapsInit</code>,
+	 * After initialization the constructor calls the <code>trapsInit</code>,
 	 * which gives valid locations for traps.
 	 * 
 	 * @param listSize size of the list
@@ -36,8 +36,8 @@ public class Traps {
 	
 	/**
 	 * Initializes the random location of traps.
-	 * Invalid locations are the location of player, enemies and other traps.
-	 * Calculates till the coordinates are not valid and then add to one trap.
+	 * The location of player, enemies and other traps are invalid locations.
+	 * Calculates until the coordinates are valid and the traps are set.
 	 *
 	 * @param size size of the game arena
 	 * @param step the distance of steps

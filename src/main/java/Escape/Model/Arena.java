@@ -1,7 +1,7 @@
 package Escape.Model;
 
 /**
- * Class which contains everything which needs to represents the game arena.
+ * This class contains everything that represents the game arena.
  */
 public class Arena {
 	/**
@@ -35,7 +35,7 @@ public class Arena {
 	private int winSize;
 	
 	/**
-	 * The distance what the objects can step at once.
+	 * The distance that the objects can step at once.
 	 */
 	private int step;
 	
@@ -67,7 +67,7 @@ public class Arena {
 	}
 	
 	/**
-	 * Checks the enemies, is there at least one active.
+	 * Check if there is at least one active enemy.
 	 * 
 	 * @return is there at least one active enemy
 	 */
@@ -98,7 +98,7 @@ public class Arena {
 	}
 
 	/**
-	 * Returns the one of the two enemy object.
+	 * Returns one of the two enemies.
 	 * 
 	 * @return the one of the two enemy object
 	 */
@@ -107,7 +107,7 @@ public class Arena {
 	}
 
 	/**
-	 * Returns the one of the two enemy object.
+	 * Returns one of the two enemies.
 	 * 
 	 * @return the one of the two enemy object
 	 */
@@ -188,18 +188,18 @@ public class Arena {
 	}
 	
 	/**
-	 * Returns the distance what objects can step.
+	 * Returns the distance that objects can step.
 	 * 
-	 * @return the distance what objects can step
+	 * @return the distance that objects can step
 	 */
 	public int getStep() {
 		return step;
 	}
 	
 	/**
-	 * Sets the distance what objects can step.
+	 * Sets the distance that objects can step.
 	 * 
-	 * @param step the distance what objects can step
+	 * @param step the distance that objects can step
 	 */
 	public void setStep(int step) {
 		this.step = step;

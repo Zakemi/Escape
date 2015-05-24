@@ -22,7 +22,7 @@ public class GameState {
 	
 	/**
 	 * The total score of the game.
-	 * Calculate this with reduce the <code>playerScore</code> with <code>enemyScore</code>. 
+	 * Equals <code>playerScore</code> - <code>enemyScore</code>
 	 */
 	private int fullScore;
 	

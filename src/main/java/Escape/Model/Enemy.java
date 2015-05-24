@@ -2,7 +2,7 @@ package Escape.Model;
 
 /**
  * Extends ArenaObject class, represents an enemy object.
- * This object must take a step by an algorithm.
+ * This object must implement a step by step algorithm.
  */
 public class Enemy extends ArenaObject {
 	/**
@@ -19,7 +19,7 @@ public class Enemy extends ArenaObject {
 	 * The object takes a step by an algorithm.
 	 * If the x distance from the player is bigger than the y distance,
 	 * the enemy object reduces the x distance between them.
-	 * In other case the enemy object reduces the y distance.
+	 * Otherwise the enemy object reduces the y distance.
 	 * @param player is the player's object
 	 * @param step is the distance what the enemy can step at once
 	 */

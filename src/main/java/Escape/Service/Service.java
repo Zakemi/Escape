@@ -8,8 +8,18 @@ import Escape.View.View;
 import JDBC.DAO;
 import JDBC.GameState;
 
+/**
+ * Manages the UI's functions.
+ * Sets the game area to default at the end of a round. Creates a new game
+ * and reset scores. 
+ */
 public class Service {
 
+	/**
+	 * Sets the game area to default at the end of a round.
+	 * 
+	 * @param arena sets to default
+	 */
 	public static void setDefault(Arena arena){
 		arena.getPlayer().setX((arena.getSize()/2)*arena.getStep());
 		arena.getPlayer().setY(0*arena.getSize());
@@ -27,6 +37,13 @@ public class Service {
 				arena.getPlayer(), arena.getEnemy1(), arena.getEnemy2());
 	}
 	
+	/**
+	 * Creates a new game and resets scores.
+	 * 
+	 * @param arena the game arena
+	 * @param control the controller of the game
+	 * @param view the Game tab of JFrame
+	 */
 	public static void newGame(Arena arena, Controller control, View view){
 		setDefault(arena);
 		control.setPlayerScore(0);
@@ -34,6 +51,15 @@ public class Service {
 		view.updateView();
 	}
 	
+	/**
+	 * Saves the game to database and creates a new game.
+	 * Creates a GameState about the game. 
+	 * Makes a DAO and calls <code>addGameState</code> to save game to database.
+	 * 
+	 * @param control the controller of the game
+	 * @param username the player's name
+	 * @param DAOpassword for database connection
+	 */
 	public static void saveGame(Controller control, String username, String DAOpassword){
 		GameState newGameState = new GameState(username, control.getPlayerScore(), control.getEnemyScore(),
 				control.getPlayerScore()-control.getEnemyScore());
@@ -42,6 +68,13 @@ public class Service {
 		dao.addGameState(newGameState, DAOpassword);
 	}
 	
+	/**
+	 * Returns the TOP 5 score of the game.
+	 * Makes a DAO and calls <code>getTop5</code> to returns scores.
+	 * 
+	 * @param DAOpassword for database connection
+	 * @return list of TOP 5 scores
+	 */
 	public static List<GameState> getTop5(String DAOpassword){
 		DAO dao = new DAO();
 		return dao.getTop5(DAOpassword);

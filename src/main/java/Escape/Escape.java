@@ -27,18 +27,59 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 
+/**
+ * The main class of the program. 
+ */
 public class Escape extends JFrame {
 
+	/**
+	 * The <code>serialVersionUID</code> of the class.
+	 */
 	private static final long serialVersionUID = -3689415169655758824L;
+	
+	/**
+	 * The main JPanel of the <code>frame</code>.
+	 */
 	private JPanel contentPane;
+	
+	/**
+	 * The main <code>Arena</code> object of the program.
+	 */
 	private Arena arena;
+	
+	/**
+	 * Part of the Game tab, the main <code>View</code> object.
+	 */
 	private View view;
+	
+	/**
+	 * The main <code>Controller</code> object of the program.
+	 */
 	private Controller control;
+	
+	/**
+	 * Part of the Rank tab, the main <code>Rank</code> object.
+	 */
 	private Rank rank;
+	
+	/**
+	 * The name of the player.
+	 * Default is "Guest".
+	 */
 	private String username = "Guest";
+	
+	/**
+	 * The password for the database.
+	 */
 	private String DAOpassword = "pwd";
-	public int szam = 0;
 
+	/**
+	 * Main method of the program.
+	 * Creates the main JFrame object and asks the user to set <code>DAOpassword</code> 
+	 * and <code>username</code> before start the game.
+	 * 
+	 * @param args command-line parameters
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -60,8 +101,15 @@ public class Escape extends JFrame {
 		});
 	}
 
+	/**
+	 * Constructor for the main JFrame object.
+	 * Sets the <code>frame</code> and initialize the <code>arena</code>, <code>view</code>,
+	 * <code>control</code>, <code>rank</code> variables, add tabs.
+	 * Calls the <code>initMenu</code> for add menu.
+	 */
 	public Escape() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Escape");
 		setBounds(300, 0, 0, 0);
 		pack();
 		Insets insets = getInsets();
@@ -81,22 +129,21 @@ public class Escape extends JFrame {
 		//contentPane.setLayout(null);
 		contentPane.setLayout(new BorderLayout());
 		
-		initMenu();
+		createMenuBar();
 		JTabbedPane tabbedPane = new JTabbedPane();
 		tabbedPane.addTab("Game", view);
 		tabbedPane.addTab("Rank", rank);
+		tabbedPane.setFocusable(false);
 		contentPane.add(tabbedPane);
+
+        setLocationRelativeTo(view.getPlayer());
 	}
-	
-	private void initMenu() {
-        
-        createMenuBar();
 
-        setTitle("Escape");
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-    }
-
+	/**
+	 * Creates the Menu and add to the main JFrame.
+	 * Creates the "New Game", "Save Game" and "Exit" items and
+	 * add ActionListener for control actions.
+	 */
     private void createMenuBar() {
 
         JMenuBar menubar = new JMenuBar();

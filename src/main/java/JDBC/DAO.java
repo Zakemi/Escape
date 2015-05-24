@@ -15,7 +15,7 @@ public class DAO {
 	
 	/**
 	 * Creates the GAMESTATE table in database.
-	 * Uses this SQL queue:
+	 * Uses this SQL query:
 	 * <pre>
 	 * CREATE TABLE gamestate(
 	 * 		username varchar(64) not null,
@@ -45,7 +45,7 @@ public class DAO {
 	
 	/**
 	 * Returns the TOP5 player score.
-	 * Uses this SQL queue:
+	 * Uses this SQL query:
 	 * <pre>
 	 * SELECT * FROM 
 	 * 		(SELECT * FROM gamestate 
@@ -76,7 +76,7 @@ public class DAO {
 
 	/**
 	 * Add a new player score to database.
-	 * Uses this SQL queue:
+	 * Uses this SQL query:
 	 * <pre>
 	 * INSERT INTO gamestate(username, player_score, enemy_score, full_score) 
 	 * VALUES (?,?,?,?);

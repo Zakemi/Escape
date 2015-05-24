@@ -5,12 +5,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
- * Creates one factory for give connection to the database.
+ * Creates a factory that returns a database connection.
  */
 public class ConnectionFactory {
 
 	/**
-	 * A factory, only this can makes connections to database.
+	 * A factory, only this can make connections to database.
 	 */
 	private static ConnectionFactory factory = new ConnectionFactory();
 	

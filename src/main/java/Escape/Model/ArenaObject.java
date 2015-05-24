@@ -1,7 +1,6 @@
 package Escape.Model;
 /**
- * This class is the basic class for an object in the area, which appear
- * in the game place.
+ * This class is the base class for an object which appears in the game arena.
  */
 public class ArenaObject {
 	/**
@@ -20,8 +19,7 @@ public class ArenaObject {
 	protected boolean active;
 	
 	/**
-	 * A constructor for an ArenaObject object.
-	 * This object always active when you create.
+	 * A constructor for an ArenaObject object. This object is always active when created.
 	 * @param x the ArenaObject x coordinate
 	 * @param y the ArenaObject y coordinate
 	 */

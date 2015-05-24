@@ -83,6 +83,8 @@ public class View extends JPanel implements KeyListener{
 		player.setBorder(null);
 		enemy1.setBorder(null);
 		enemy2.setBorder(null);
+		enemy1.setFocusable(false);
+		enemy2.setFocusable(false);
 		this.add(player);
 		this.add(enemy1);
 		this.add(enemy2);
@@ -92,6 +94,7 @@ public class View extends JPanel implements KeyListener{
 			traps.get(i).setMargin(new Insets(0, 0, 0, 0));
 			traps.get(i).setBackground(Color.RED);
 			traps.get(i).setBorder(null);
+			traps.get(i).setFocusable(false);
 			this.add(traps.get(i));
 		}
 
