@@ -2,10 +2,8 @@ package JDBC;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.logging.Logger;
 
-import Escape.Controller.Controller;
 
 /**
  * Creates a factory that returns a database connection.
@@ -44,10 +42,8 @@ public class ConnectionFactory {
 		try {
 			DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
 			logger.info("Oracle Driver register done");
-		} catch (SQLException e) {
-			//e.printStackTrace();
+		} catch (Exception e) {
 			logger.throwing("ConnectionFactory", "registerDriverFault", e);
-			//System.out.println("ERROR: Can not register oracle driver.");
 		}
 	}
 	
@@ -61,9 +57,7 @@ public class ConnectionFactory {
 		try {
 			connection = DriverManager.getConnection(DB_URL, username, password);
 			logger.info("Connection created");
-		} catch (SQLException e) {
-			/*e.printStackTrace();
-			System.out.println("ERROR: Can not create connection: "+username+" "+password);*/
+		} catch (Exception e) {
 			logger.throwing("ConnectionFactory", "connectionFault_"+username+"_"+password, e);
 		}
 		return connection;

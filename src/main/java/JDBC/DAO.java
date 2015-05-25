@@ -3,13 +3,11 @@ package JDBC;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import Escape.Controller.Controller;
 
 /**
  * A DAO for the JDBC connection.
@@ -47,7 +45,7 @@ public class DAO {
 						+")";
 			statement.executeUpdate(create_table);
 			logger.info("Table created");
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.throwing("createGameStateTable", "canNotCreateTable", e);
 		}
 	}
@@ -78,7 +76,7 @@ public class DAO {
 				result.add(new GameState(username, playerScore, enemyScore, fullScore));
 			}
 			logger.info("Have TOP5 list");
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.throwing("getTOP5", "canNotGetTOP5", e);
 		}
 		return result;
@@ -106,7 +104,7 @@ public class DAO {
 			prepstate.setInt(4, gameState.getFullScore());
 			prepstate.executeQuery();
 			logger.info("GameState added to database");
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			logger.throwing("addGameState", "canNotAddGameState", e);
 		}
 	}

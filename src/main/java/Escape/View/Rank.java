@@ -8,7 +8,6 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.SimpleAttributeSet;
@@ -19,14 +18,14 @@ import JDBC.GameState;
 
 public class Rank extends JPanel {
 	
+	private static final long serialVersionUID = -2346885991328839658L;
 	JTextPane ranks;
 	private String DAOpassword;
 	
 	public Rank(){
-		this.DAOpassword = DAOpassword;
 		ranks = new JTextPane();
 		ranks.setBounds(100, 100, 500, 300);
-		//refreshRank();
+		ranks.setFocusable(false);
 		this.add(ranks);
 		
 		JButton refresh = new JButton("Refresh");

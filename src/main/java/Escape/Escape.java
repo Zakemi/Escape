@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Insets;
 
-import javax.swing.JDesktopPane;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -23,8 +22,6 @@ import Escape.View.View;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 
 /**
@@ -113,10 +110,8 @@ public class Escape extends JFrame {
 		setBounds(300, 0, 0, 0);
 		pack();
 		Insets insets = getInsets();
-		//this.
 		setSize(new Dimension(insets.left + insets.right + 600,
 		             insets.top + insets.bottom + 630));
-		//setSize(new Dimension(600, 600));
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		arena = new Arena(6, 600);
@@ -124,9 +119,7 @@ public class Escape extends JFrame {
         control = new Controller(arena, view);
         view.setControl(control);
         rank = new Rank();
-		//contentPane.setBorder(null);
 		setContentPane(contentPane);
-		//contentPane.setLayout(null);
 		contentPane.setLayout(new BorderLayout());
 		
 		createMenuBar();

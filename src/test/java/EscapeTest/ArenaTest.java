@@ -45,6 +45,11 @@ public class ArenaTest {
 	}
 	
 	@Test
+	public void enemyNotNull(){
+		assertNotNull(new Enemy(100, 200));
+	}
+	
+	@Test
 	public void ArenaTests(){
 		Arena arena = new Arena(6, 600);
 		assertNotNull(new Arena(6, 600));
@@ -76,22 +81,24 @@ public class ArenaTest {
 
 	@Test
 	public void TrapsLocationTest(){
-		Player player = new Player(300, 0);
-		Enemy enemy1 = new Enemy(0, 500);
-		Enemy enemy2 = new Enemy(500,500);
-		Traps traps = new Traps(2, 6, 100, player, enemy1, enemy2);
-		assertTrue(AssertNotEqualObject(traps.getList().get(0), player));
-		assertTrue(AssertNotEqualObject(traps.getList().get(0), enemy1));
-		assertTrue(AssertNotEqualObject(traps.getList().get(0), enemy2));
-		assertTrue(AssertNotEqualObject(traps.getList().get(1), player));
-		assertTrue(AssertNotEqualObject(traps.getList().get(1), enemy1));
-		assertTrue(AssertNotEqualObject(traps.getList().get(1), enemy2));
-		assertNotEquals(400, player.getX());
-		assertNotEquals(300, player.getY());
-		List<ArenaObject> newtraps = new ArrayList<ArenaObject>();
-		newtraps.add(new ArenaObject(300, 300));
-		traps.setList(newtraps);
-		AssertListEquals(newtraps, traps.getList());
+		for(int i=0; i<100; i++){
+			Player player = new Player(300, 0);
+			Enemy enemy1 = new Enemy(0, 500);
+			Enemy enemy2 = new Enemy(500,500);
+			Traps traps = new Traps(2, 6, 100, player, enemy1, enemy2);
+			assertTrue(AssertNotEqualObject(traps.getList().get(0), player));
+			assertTrue(AssertNotEqualObject(traps.getList().get(0), enemy1));
+			assertTrue(AssertNotEqualObject(traps.getList().get(0), enemy2));
+			assertTrue(AssertNotEqualObject(traps.getList().get(1), player));
+			assertTrue(AssertNotEqualObject(traps.getList().get(1), enemy1));
+			assertTrue(AssertNotEqualObject(traps.getList().get(1), enemy2));
+			assertNotEquals(400, player.getX());
+			assertNotEquals(300, player.getY());
+			List<ArenaObject> newtraps = new ArrayList<ArenaObject>();
+			newtraps.add(new ArenaObject(300, 300));
+			traps.setList(newtraps);
+			AssertListEquals(newtraps, traps.getList());
+		}
 	}
 	
 	@Test
@@ -152,51 +159,32 @@ public class ArenaTest {
 		assertEquals(0, enemy.getX());
 		assertEquals(400, enemy.getY());
 		
-		enemy.setXY(player, 100);
-		assertEquals(0, enemy.getX());
-		assertEquals(300, enemy.getY());
-		
-		enemy.setXY(player, 100);
-		assertEquals(0, enemy.getX());
-		assertEquals(200, enemy.getY());
-		
-		enemy.setXY(player, 100);
-		assertEquals(100, enemy.getX());
-		assertEquals(200, enemy.getY());
-		
-		enemy.setXY(player, 100);
-		assertEquals(100, enemy.getX());
-		assertEquals(100, enemy.getY());
-		
-		enemy.setXY(player, 100);
-		assertEquals(200, enemy.getX());
-		assertEquals(100, enemy.getY());
-		
-		enemy.setXY(player, 100);
-		assertEquals(200, enemy.getX());
-		assertEquals(0, enemy.getY());
+		player = new Player(0, 400);
+		enemy = new Enemy(300, 0);
 		
 		enemy.setXY(player, 100);
 		assertEquals(300, enemy.getX());
+		assertEquals(100, enemy.getY());
+		
+		player = new Player(0, 100);
+		enemy = new Enemy(300, 0);
+		
+		enemy.setXY(player, 100);
+		assertEquals(200, enemy.getX());
 		assertEquals(0, enemy.getY());
 		
-		Player player2 = new Player(0, 400);
-		Enemy enemy2 = new Enemy(300, 0);
+		player = new Player(300, 0);
+		enemy = new Enemy(500, 500);
 		
-		enemy2.setXY(player2, 100);
-		assertEquals(300, enemy2.getX());
-		assertEquals(100, enemy2.getY());
+		enemy.setXY(player, 100);
+		assertEquals(500, enemy.getX());
+		assertEquals(400, enemy.getY());
 		
-		enemy2.setXY(player2, 100);
-		assertEquals(300, enemy2.getX());
-		assertEquals(200, enemy2.getY());
+		player = new Player(500, 500);
+		enemy = new Enemy(300, 0);
 		
-		enemy2.setXY(player2, 100);
-		assertEquals(200, enemy2.getX());
-		assertEquals(200, enemy2.getY());
-		
-		enemy2.setXY(player2, 100);
-		assertEquals(200, enemy2.getX());
-		assertEquals(300, enemy2.getY());
+		enemy.setXY(player, 100);
+		assertEquals(300, enemy.getX());
+		assertEquals(100, enemy.getY());
 	}
 }

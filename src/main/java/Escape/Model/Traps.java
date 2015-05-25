@@ -3,12 +3,18 @@ package Escape.Model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Logger;
 
 /**
  * Extends ArenaObject class, represents a list of a traps.
  */
 public class Traps {
 
+	/**
+	 * Creates logs.
+	 */
+	protected static Logger	logger = Logger.getLogger(Traps.class.getName());
+	
 	/**
 	 * List, which contains the traps.
 	 */
@@ -50,35 +56,29 @@ public class Traps {
 		for (int i = 0; i < list.size(); i++){
 			list.get(i).setX(-1000);
 			list.get(i).setY(-1000);
+		}
+		logger.info("Start search of traps");
+		for (int i = 0; i < list.size(); i++){
 			int x = 0;
 			int y = 0;
 			boolean goodCoords = false;
 			while(!goodCoords) {
 				x = (rand.nextInt(size-2)+1)*step;
 				y = (rand.nextInt(size-2)+1)*step;
-				if ((x!=player.getX() || y!=player.getY())){
-					goodCoords = true;
-					if (x==enemy1.getX() && y==enemy1.getY()){
-						goodCoords = false;
-						break;
-					}
-					if (x==enemy2.getX() && y==enemy2.getY()){
+				goodCoords = true;
+				for (ArenaObject trap : list) {
+					if (Math.abs(x-trap.getX())<2*step || Math.abs(y-trap.getY())<2*step){
 						goodCoords = false;
 						break;
 					}
 				}
-				if (goodCoords && list.size()>0)
-					for (ArenaObject trap : list) {
-						if (Math.abs(x-trap.getX())<2*step || Math.abs(y-trap.getY())<2*step){
-							goodCoords = false;
-							break;
-						}
-					}
 			}
+			
 			list.get(i).setX(x);
 			list.get(i).setY(y);
 			list.get(i).setActive(true);
 		}
+		logger.info("Traps search done");
 	}
 
 	/**

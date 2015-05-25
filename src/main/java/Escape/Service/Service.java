@@ -19,7 +19,7 @@ public class Service {
 	/**
 	 * Creates logs.
 	 */
-	protected static Logger	logger = Logger.getLogger(Controller.class.getName());
+	protected static Logger	logger = Logger.getLogger(Service.class.getName());
 	
 	/**
 	 * Sets the game area to default at the end of a round.

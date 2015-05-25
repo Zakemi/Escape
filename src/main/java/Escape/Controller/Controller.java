@@ -124,21 +124,22 @@ public class Controller{
 	 * If the player in a trap or an enemy, the activation is false.
 	 */
 	public void setPlayerActive(){
-		if (arena.getEnemy1().isActive() && arena.getEnemy1().getX() == arena.getPlayer().getX() && 
-				arena.getEnemy1().getY() == arena.getPlayer().getY()){
+		if (arena.getEnemy1().isActive() && (arena.getEnemy1().getX() == arena.getPlayer().getX()) && 
+				(arena.getEnemy1().getY() == arena.getPlayer().getY())){
 			arena.getPlayer().setActive(false);
 			logger.info("Player catched by enemy1");
 		}
-		if (arena.getEnemy2().isActive() && arena.getEnemy2().getX() == arena.getPlayer().getX() && 
-				arena.getEnemy2().getY() == arena.getPlayer().getY()){
+		if (arena.getEnemy2().isActive() && (arena.getEnemy2().getX() == arena.getPlayer().getX()) && 
+				(arena.getEnemy2().getY() == arena.getPlayer().getY())){
 			arena.getPlayer().setActive(false);
 			logger.info("Player catched by enemy2");
 		}
 		for (ArenaObject trap : arena.getTraps().getList()) {
-			if (trap.isActive() && trap.getX() == arena.getPlayer().getX() && 
-					trap.getY() == arena.getPlayer().getY()){
+			if (trap.isActive() && (trap.getX() == arena.getPlayer().getX()) && 
+					(trap.getY() == arena.getPlayer().getY())){
 				arena.getPlayer().setActive(false);
 				logger.info("Player catched by a trap");
+				break;
 			}
 		}
 		logger.info("Player isActive:"+arena.getPlayer().isActive());
@@ -150,12 +151,12 @@ public class Controller{
 	 */
 	public void setEnemyAndTrapActive(){
 		for (ArenaObject trap : arena.getTraps().getList()) {
-			if (trap.isActive() && arena.getEnemy1().getX() == trap.getX() && arena.getEnemy1().getY() == trap.getY()){
+			if (trap.isActive() && (arena.getEnemy1().getX() == trap.getX()) && (arena.getEnemy1().getY() == trap.getY())){
 				arena.getEnemy1().setActive(false);
 				trap.setActive(false);
 				logger.info("Enemy1 in a trap");
 			}
-			if (trap.isActive() && arena.getEnemy2().getX() == trap.getX() && arena.getEnemy2().getY() == trap.getY()){
+			if (trap.isActive() && (arena.getEnemy2().getX() == trap.getX()) && (arena.getEnemy2().getY() == trap.getY())){
 				arena.getEnemy2().setActive(false);
 				trap.setActive(false);
 				logger.info("Enemy2 in a trap");

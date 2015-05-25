@@ -21,9 +21,6 @@ import Escape.Model.Arena;
 
 public class View extends JPanel implements KeyListener{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1275706944314909295L;
 	private Arena arena;
 	private Controller control;
@@ -144,23 +141,17 @@ public class View extends JPanel implements KeyListener{
 		}
 		if (key.getKeyCode() == KeyEvent.VK_DOWN){
 			control.keyVK_DOWN();
-			//didStep = arena.setPlayerY(arena.getPlayer().getY()+arena.getStep());
 		}
 		if (key.getKeyCode() == KeyEvent.VK_UP){
 			control.keyVK_UP();
-			//didStep = arena.setPlayerY(arena.getPlayer().getY()-arena.getStep());
 		}
 	}
 
 	@Override
-	public void keyReleased(KeyEvent arg0) {
-		
-	}
+	public void keyReleased(KeyEvent arg0) {}
 
 	@Override
-	public void keyTyped(KeyEvent arg0) {
-		
-	}
+	public void keyTyped(KeyEvent arg0) {}
 	
 	public JButton getPlayer() {
 		return player;
