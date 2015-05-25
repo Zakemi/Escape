@@ -5,22 +5,22 @@ package Escape.Model;
  */
 public class Arena {
 	/**
-	 * Represent the player object.
+	 * Represents the player object.
 	 */
 	private Player player;
 	
 	/**
-	 * Represent one of the two enemy object.
+	 * Represents one of the two enemy object.
 	 */
 	private Enemy enemy1;
 	
 	/**
-	 * Represent one of the two enemy object.
+	 * Represents one of the two enemy object.
 	 */
 	private Enemy enemy2;
 	
 	/**
-	 * Represent the list of traps.
+	 * Represents the list of traps.
 	 */
 	private Traps traps;
 	
@@ -45,7 +45,7 @@ public class Arena {
 	private int trapSize = 2;
 
 	/**
-	 * Constructor for create the game arena.
+	 * Constructor for creating the game arena.
 	 * Places the player top center, the enemies bottom left
 	 * and right corner and the traps random free slots.
 	 * This code
@@ -116,7 +116,7 @@ public class Arena {
 	}
 	
 	/**
-	 * Sets the one of the two enemy object.
+	 * Sets the first enemy.
 	 * 
 	 * @param enemy1 an enemy object
 	 */
@@ -125,7 +125,7 @@ public class Arena {
 	}
 
 	/**
-	 * Sets the one of the two enemy object.
+	 * Sets the second enemy
 	 * 
 	 * @param enemy2 an enemy object
 	 */

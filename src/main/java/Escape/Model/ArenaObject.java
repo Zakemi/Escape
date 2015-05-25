@@ -14,7 +14,7 @@ public class ArenaObject {
 	protected int y;
 	
 	/**
-	 * Shows is the object active or not.
+	 * Shows if the object is active or not.
 	 */
 	protected boolean active;
 	

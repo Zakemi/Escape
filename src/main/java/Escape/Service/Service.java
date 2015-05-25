@@ -12,7 +12,7 @@ import JDBC.GameState;
 /**
  * Manages the UI's functions.
  * Sets the game area to default at the end of a round. Creates a new game
- * and reset scores. 
+ * and resets scores. 
  */
 public class Service {
 

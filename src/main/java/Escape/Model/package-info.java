@@ -1,4 +1,4 @@
 /**
- * Contains the game's classes, which write down the game area.
+ * Contains the game's classes that describe the game arena.
  */
 package Escape.Model;

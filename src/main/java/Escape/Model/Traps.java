@@ -16,12 +16,12 @@ public class Traps {
 	protected static Logger	logger = Logger.getLogger(Traps.class.getName());
 	
 	/**
-	 * List, which contains the traps.
+	 * List which contains the traps.
 	 */
 	private List<ArenaObject> list;
 	
 	/**
-	 * Constructor for initialize the list size and add invalid traps.
+	 * Constructor for initializing the list size and adding invalid traps.
 	 * After initialization the constructor calls the <code>trapsInit</code>,
 	 * which gives valid locations for traps.
 	 * 
