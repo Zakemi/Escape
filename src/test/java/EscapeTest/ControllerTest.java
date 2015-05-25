@@ -215,6 +215,17 @@ public class ControllerTest {
 		arena.getTraps().setList(traps);
 		control.setPlayerActive();
 		assertFalse(arena.getPlayer().isActive());
+		
+		arena.getPlayer().setActive(true);
+		arena.getPlayer().setX(300);
+		arena.getPlayer().setY(300);
+		traps = new ArrayList<ArenaObject>();
+		traps.add(new ArenaObject(200, 200));
+		traps.add(new ArenaObject(300, 300));
+		traps.get(1).setActive(false);
+		arena.getTraps().setList(traps);
+		control.setPlayerActive();
+		assertTrue(arena.getPlayer().isActive());
 	}
 	
 	@Test
@@ -306,6 +317,51 @@ public class ControllerTest {
 	}
 	
 	@Test
+	public void setEnemyAndTrapActive5(){
+		Arena arena = new Arena(6, 600);
+		View view = new View(arena);
+		Controller control = new Controller(arena, view);
+		view.setControl(control);
+		
+		arena.getEnemy1().setX(500);
+		arena.getEnemy1().setY(500);
+		arena.getEnemy2().setX(400);
+		arena.getEnemy2().setY(400);
+		List<ArenaObject> traps = new ArrayList<ArenaObject>();
+		traps.add(new ArenaObject(500, 500));
+		traps.add(new ArenaObject(500, 400));
+		traps.get(0).setActive(false);
+		arena.getTraps().setList(traps);
+		control.setEnemyAndTrapActive();
+		assertTrue(arena.getEnemy1().isActive());
+		assertTrue(arena.getEnemy2().isActive());
+		assertFalse(arena.getTraps().getList().get(0).isActive());
+		assertTrue(arena.getTraps().getList().get(1).isActive());
+	}
+	
+	@Test
+	public void setEnemyAndTrapActive6(){
+		Arena arena = new Arena(6, 600);
+		View view = new View(arena);
+		Controller control = new Controller(arena, view);
+		view.setControl(control);
+		
+		arena.getEnemy1().setX(500);
+		arena.getEnemy1().setY(500);
+		arena.getEnemy2().setX(400);
+		arena.getEnemy2().setY(400);
+		List<ArenaObject> traps = new ArrayList<ArenaObject>();
+		traps.add(new ArenaObject(400, 500));
+		traps.add(new ArenaObject(200, 400));
+		arena.getTraps().setList(traps);
+		control.setEnemyAndTrapActive();
+		assertTrue(arena.getEnemy1().isActive());
+		assertTrue(arena.getEnemy2().isActive());
+		assertTrue(arena.getTraps().getList().get(0).isActive());
+		assertTrue(arena.getTraps().getList().get(1).isActive());
+	}
+	
+	@Test
 	public void enemyStepTest1(){
 		Arena arena = new Arena(6, 600);
 		View view = new View(arena);
@@ -348,5 +404,20 @@ public class ControllerTest {
 		control.enemyStep();
 		assertEquals(enemy1y, arena.getEnemy1().getY());
 		assertNotEquals(enemy2y, arena.getEnemy2().getY());
+	}
+	
+	@Test
+	public void enemyStepTest4(){
+		Arena arena = new Arena(6, 600);
+		View view = new View(arena);
+		Controller control = new Controller(arena, view);
+		view.setControl(control);
+		
+		int enemy1y = arena.getEnemy1().getY();
+		int enemy2y = arena.getEnemy2().getY();
+		arena.getEnemy2().setActive(false);
+		control.enemyStep();
+		assertNotEquals(enemy1y, arena.getEnemy1().getY());
+		assertEquals(enemy2y, arena.getEnemy2().getY());
 	}
 }
