@@ -15,7 +15,7 @@ public class ConnectionFactory {
 	/**
 	 * Creates logs.
 	 */
-	protected static Logger	logger = Logger.getLogger(Controller.class.getName());
+	protected static Logger	logger = Logger.getLogger(ConnectionFactory.class.getName());
 	
 	/**
 	 * A factory, only this can make connections to database.

@@ -7,11 +7,19 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
+
+import Escape.Controller.Controller;
 
 /**
  * A DAO for the JDBC connection.
  */
 public class DAO {
+	
+	/**
+	 * Creates logs.
+	 */
+	protected static Logger	logger = Logger.getLogger(DAO.class.getName());
 	
 	/**
 	 * Creates the GAMESTATE table in database.
@@ -38,8 +46,9 @@ public class DAO {
 						+"full_score number(10) not null"
 						+")";
 			statement.executeUpdate(create_table);
+			logger.info("Table created");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.throwing("createGameStateTable", "canNotCreateTable", e);
 		}
 	}
 	
@@ -68,8 +77,9 @@ public class DAO {
 				int fullScore = resultSet.getInt(4);
 				result.add(new GameState(username, playerScore, enemyScore, fullScore));
 			}
+			logger.info("Have TOP5 list");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.throwing("getTOP5", "canNotGetTOP5", e);
 		}
 		return result;
 	}
@@ -95,9 +105,9 @@ public class DAO {
 			prepstate.setInt(3, gameState.getEnemyScore());
 			prepstate.setInt(4, gameState.getFullScore());
 			prepstate.executeQuery();
-			
+			logger.info("GameState added to database");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			logger.throwing("addGameState", "canNotAddGameState", e);
 		}
 	}
 }
