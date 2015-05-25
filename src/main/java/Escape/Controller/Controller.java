@@ -1,5 +1,7 @@
 package Escape.Controller;
 
+import java.util.logging.Logger;
+
 import Escape.Model.Arena;
 import Escape.Model.ArenaObject;
 import Escape.Service.Service;
@@ -9,6 +11,10 @@ import Escape.View.View;
  * Control the gameplay.
  */
 public class Controller{
+	/**
+	 * Creates logs.
+	 */
+	protected static Logger	logger = Logger.getLogger(Controller.class.getName());
 	/**
 	 * The game's arena.
 	 */
@@ -54,16 +60,19 @@ public class Controller{
 	public void keyEvent(boolean didStep){
 		setPlayerActive();
 		if ( ! arena.getPlayer().isActive()){
+			logger.info("Player is not active");
 			Service.setDefault(arena);
 			enemyScore++;
 			view.updateView();
 		}
 		else if ( ! arena.enemiesIsActive()){
+			logger.info("Noone enemy is acive");
 			Service.setDefault(arena);
 			playerScore++;
 			view.updateView();
 		}
 		else if(didStep){
+			logger.info("Player and at least one enemy active");
 			enemyStep();
 			setEnemyAndTrapActive();
 		}
@@ -76,6 +85,7 @@ public class Controller{
 	 */
 	public void keyVK_LEFT(){
 		boolean didStep = setPlayerX(arena.getPlayer().getX()-arena.getStep());
+		logger.info("Did step:"+didStep);
 		keyEvent(didStep);
 	}
 	
@@ -85,6 +95,7 @@ public class Controller{
 	 */
 	public void keyVK_RIGHT(){
 		boolean didStep = setPlayerX(arena.getPlayer().getX()+arena.getStep());
+		logger.info("Did step:"+didStep);
 		keyEvent(didStep);
 	}
 	
@@ -94,6 +105,7 @@ public class Controller{
 	 */
 	public void keyVK_DOWN(){
 		boolean didStep = setPlayerY(arena.getPlayer().getY()+arena.getStep());
+		logger.info("Did step:"+didStep);
 		keyEvent(didStep);
 	}
 	
@@ -103,6 +115,7 @@ public class Controller{
 	 */
 	public void keyVK_UP(){
 		boolean didStep = setPlayerY(arena.getPlayer().getY()-arena.getStep());
+		logger.info("Did step:"+didStep);
 		keyEvent(didStep);
 	}
 	
@@ -112,17 +125,23 @@ public class Controller{
 	 */
 	public void setPlayerActive(){
 		if (arena.getEnemy1().isActive() && arena.getEnemy1().getX() == arena.getPlayer().getX() && 
-				arena.getEnemy1().getY() == arena.getPlayer().getY())
+				arena.getEnemy1().getY() == arena.getPlayer().getY()){
 			arena.getPlayer().setActive(false);
+			logger.info("Player catched by enemy1");
+		}
 		if (arena.getEnemy2().isActive() && arena.getEnemy2().getX() == arena.getPlayer().getX() && 
-				arena.getEnemy2().getY() == arena.getPlayer().getY())
+				arena.getEnemy2().getY() == arena.getPlayer().getY()){
 			arena.getPlayer().setActive(false);
+			logger.info("Player catched by enemy2");
+		}
 		for (ArenaObject trap : arena.getTraps().getList()) {
 			if (trap.isActive() && trap.getX() == arena.getPlayer().getX() && 
 					trap.getY() == arena.getPlayer().getY()){
 				arena.getPlayer().setActive(false);
+				logger.info("Player catched by a trap");
 			}
 		}
+		logger.info("Player isActive:"+arena.getPlayer().isActive());
 	}
 	
 	/**
@@ -134,10 +153,12 @@ public class Controller{
 			if (trap.isActive() && arena.getEnemy1().getX() == trap.getX() && arena.getEnemy1().getY() == trap.getY()){
 				arena.getEnemy1().setActive(false);
 				trap.setActive(false);
+				logger.info("Enemy1 in a trap");
 			}
 			if (trap.isActive() && arena.getEnemy2().getX() == trap.getX() && arena.getEnemy2().getY() == trap.getY()){
 				arena.getEnemy2().setActive(false);
 				trap.setActive(false);
+				logger.info("Enemy2 in a trap");
 			}
 		}
 	}
@@ -178,10 +199,14 @@ public class Controller{
 	 */
 	public void enemyStep(){
 		if (arena.getPlayer().isActive()){
-			if (arena.getEnemy1().isActive())
+			if (arena.getEnemy1().isActive()){
 				arena.getEnemy1().setXY(arena.getPlayer(), arena.getStep());
-			if (arena.getEnemy2().isActive())
+				logger.info("Enemy1 stepped:"+arena.getEnemy1().getX()+", "+arena.getEnemy1().getY());
+			}
+			if (arena.getEnemy2().isActive()){
 				arena.getEnemy2().setXY(arena.getPlayer(), arena.getStep());
+				logger.info("Enemy2 stepped:"+arena.getEnemy2().getX()+", "+arena.getEnemy2().getY());
+			}
 		}
 		setPlayerActive();
 	}

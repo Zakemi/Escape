@@ -1,6 +1,7 @@
 package Escape.Service;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import Escape.Controller.Controller;
 import Escape.Model.Arena;
@@ -15,6 +16,11 @@ import JDBC.GameState;
  */
 public class Service {
 
+	/**
+	 * Creates logs.
+	 */
+	protected static Logger	logger = Logger.getLogger(Controller.class.getName());
+	
 	/**
 	 * Sets the game area to default at the end of a round.
 	 * 
@@ -35,6 +41,8 @@ public class Service {
 		
 		arena.getTraps().trapsInit(arena.getSize(), arena.getStep(), 
 				arena.getPlayer(), arena.getEnemy1(), arena.getEnemy2());
+		
+		logger.info("Arena is in default state");
 	}
 	
 	/**
@@ -49,6 +57,7 @@ public class Service {
 		control.setPlayerScore(0);
 		control.setEnemyScore(0);
 		view.updateView();
+		logger.info("Started a new game");
 	}
 	
 	/**
@@ -66,6 +75,7 @@ public class Service {
 		System.out.println(control.getPlayerScore()+control.getEnemyScore());
 		DAO dao = new DAO();
 		dao.addGameState(newGameState, DAOpassword);
+		logger.info("Game saved");
 	}
 	
 	/**

@@ -28,7 +28,7 @@ public class Enemy extends ArenaObject {
 			if (player.getX() > x){
 				this.x += step;
 			}
-			else if (player.getX() < x) {
+			else {
 				this.x -= step;
 			}
 		}
@@ -36,7 +36,7 @@ public class Enemy extends ArenaObject {
 			if (player.getY() > y){
 				this.y += step;
 			}
-			else if (player.getY() < y){
+			else {
 				this.y -= step;
 			}
 		}
