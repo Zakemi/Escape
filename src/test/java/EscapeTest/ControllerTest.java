@@ -167,6 +167,11 @@ public class ControllerTest {
 		Controller control = new Controller(arena, view);
 		view.setControl(control);
 		
+		List<ArenaObject> traps = new ArrayList<ArenaObject>();
+		traps.add(new ArenaObject(600, 600));
+		traps.add(new ArenaObject(700, 700));
+		arena.getTraps().setList(traps);
+		
 		arena.getPlayer().setX(300);
 		arena.getPlayer().setY(300);
 		arena.getEnemy1().setX(300);
@@ -201,7 +206,7 @@ public class ControllerTest {
 		arena.getEnemy1().setY(500);
 		arena.getEnemy2().setX(400);
 		arena.getEnemy2().setY(400);
-		List<ArenaObject> traps = new ArrayList<ArenaObject>();
+		traps = new ArrayList<ArenaObject>();
 		traps.add(new ArenaObject(300, 300));
 		traps.add(new ArenaObject(200, 200));
 		arena.getTraps().setList(traps);
