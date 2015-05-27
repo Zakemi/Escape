@@ -1,5 +1,8 @@
 package Escape.Controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import Escape.Model.Arena;
@@ -11,6 +14,18 @@ import Escape.View.View;
  * Control the gameplay.
  */
 public class Controller{
+	
+	static {
+		InputStream	in = Controller.class.getResourceAsStream("/logging.properties");
+		if (in != null) {
+			try {
+				LogManager.getLogManager().readConfiguration(in);
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	/**
 	 * Creates logs.
 	 */

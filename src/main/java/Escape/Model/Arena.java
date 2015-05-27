@@ -125,7 +125,7 @@ public class Arena {
 	}
 
 	/**
-	 * Sets the second enemy
+	 * Sets the second enemy.
 	 * 
 	 * @param enemy2 an enemy object
 	 */

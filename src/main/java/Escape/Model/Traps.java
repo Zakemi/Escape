@@ -1,8 +1,11 @@
 package Escape.Model;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 /**
@@ -10,6 +13,17 @@ import java.util.logging.Logger;
  */
 public class Traps {
 
+	static {
+		InputStream	in = Traps.class.getResourceAsStream("/logging.properties");
+		if (in != null) {
+			try {
+				LogManager.getLogManager().readConfiguration(in);
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	/**
 	 * Creates logs.
 	 */

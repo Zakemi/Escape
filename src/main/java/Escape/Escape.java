@@ -23,12 +23,26 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.logging.LogManager;
 
 /**
  * The main class of the program. 
  */
 public class Escape extends JFrame {
 
+	static {
+		InputStream	in = Escape.class.getResourceAsStream("/logging.properties");
+		if (in != null) {
+			try {
+				LogManager.getLogManager().readConfiguration(in);
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
 	/**
 	 * The <code>serialVersionUID</code> of the class.
 	 */
