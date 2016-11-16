@@ -2,6 +2,8 @@
 
 This project is a small game where you should escape from the enemies. Have fun!
 
+Screenshots about the game are availabe in the screenshots directory.
+
 ## How can you run the project?
 
 ### Easy way
